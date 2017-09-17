@@ -1,6 +1,6 @@
 package project1;
 
-import org.newdawn.slick.Input;
+//import org.newdawn.slick.Input;
 
 public class Unit extends Sprite {
 	
