@@ -86,46 +86,28 @@ public abstract class Movable extends Sprite{
 		System.out.println("moving");
 		System.out.println(this.toString());
 		
-		// USE getDest later. Better for privacy.
-		// Position pos = this.getDest(dir, speed);
-		// else go about your day
-		float delta_x = 0,
-				delta_y = 0;
-		switch (dir) {
-			case DIR_LEFT:
-				delta_x = -speed;
-				break;
-			case DIR_RIGHT:
-				delta_x = speed;
-				break;
-			case DIR_UP:
-				delta_y = -speed;
-				break;
-			case DIR_DOWN:
-				delta_y = speed;
-				break;
-		}
+		Position candidatePos = this.getDest(dir, speed, 1);
 		
-		float candidate_x = this.getX() + delta_x;
-		float candidate_y = this.getY() + delta_y;
-		// Make sure the position isn't occupied!
-		if (!World.isBlocked(candidate_x, candidate_y)) {
+		if (World.isBlocked(candidatePos)) {
 			
-			// if there's a pushable object, check that the pushable object can move
-			if (World.getSpriteOfType("pushable", candidate_x, candidate_y) != null) {
+			// if this sprite can push pushable objects and there is a pushable object in its way,
+			// check that the pushable object can move
+			if (this.compareTag("can_push") && World.getSpriteOfType("pushable", candidatePos) != null) {
 				
 				// if there's another pushable object in front of the pushable object, then don't you dare move!
-				// i believe should still increase the mvoe counter!
-				if ((World.isBlocked(candidate_x + delta_x, candidate_y + delta_y)) || 
-						(World.getSpriteOfType("pushable", candidate_x + delta_x, candidate_y + delta_y) != null)) {
+				// Check 2 tiles away
+				if ((World.isBlocked(this.getDest(dir, speed, 2)))) {
 					// don't move
 					return;
 				}
+			} else {
+				return;
 			}
+		}
 			
 			// moves this block to it's new home
-			this.setX(this.getX() + delta_x);
-			this.setY(this.getY() + delta_y);
+		this.setX(candidatePos.getX());
+		this.setY(candidatePos.getY());
 			
 			/*if ((sprite = World.getSpriteOfType("pushable", sprite.getX() + delta_x, sprite.getY() + delta_y)) != null) {
 				
@@ -135,7 +117,6 @@ public abstract class Movable extends Sprite{
 			} */
 			// adds curr pos to history
 			
-		}
 	}
 	
 	public void onMove(int dir, float testX, float testY) {

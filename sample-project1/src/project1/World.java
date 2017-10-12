@@ -6,29 +6,29 @@ import org.newdawn.slick.Input;
 
 public class World {
 	private static ArrayList<Sprite> sprites;
-	private static String curr_lvl;
-	private static int level;
-	//private Input input;
-	// private int nextLevel;
+	private static int curr_level;
+	public static Input input;
 	public static int num_moves;
 	public static boolean playerMoved;
 	public static int playerInput;
 	
 	static final int MAX_LVL = 5;
+	
 	public World(int level) {
-		curr_lvl = "res/levels/" + Integer.toString(level) + ".lvl";
-		sprites = Loader.loadSprites(curr_lvl);
+		// loads in the current level from file
+		sprites = Loader.loadSprites("res/levels/" + Integer.toString(curr_level) + ".lvl");
 		playerMoved = false;
 		num_moves = 0;
-		//this.level = level;
 	}
 	
-	public static void createSprite(Sprite sprite) {
+	
+	public void createSprite(Sprite sprite) {
 		
 	}
 	
 	public static void destroySprite(Sprite sprite) {
-		//sprites.remove(sprite);
+		int index = sprites.indexOf(sprite);
+		sprites.set(index, null);
 		System.out.println();
 	}
 	
@@ -49,7 +49,6 @@ public class World {
 		
 		return false;
 	}
-	
 	
 public static boolean isBlocked(Position pos) {
 		
@@ -114,7 +113,24 @@ public static boolean isBlocked(Position pos) {
 		return null;
 	}
 	
+	
+	// for when using a position is better
+	public static Sprite getSpriteOfType(String tag, Position pos) {
+		for (Sprite sprite : sprites) {
+			
+			if (sprite.compareTag(tag) 	&& (Loader.getTileX(pos.getX()) == Loader.getTileX(sprite.getX())) 
+										&& (Loader.getTileY(pos.getY()) == Loader.getTileY(sprite.getY()))) {
+				return sprite;
+			}
+		}
+		// returns null if nothing there
+		return null;
+	}
+	
+	
 	public void update(Input input, int delta) {
+		
+		this.input = input;
 		
 		// For keyboard commands
 		// check if you've won!
@@ -127,12 +143,13 @@ public static boolean isBlocked(Position pos) {
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			System.exit(0);
 		}
+		
 		// Go to next level. For testing!
 		if (input.isKeyPressed(Input.KEY_L)) {
 			loadNextLevel();
 		}
 		
-		// restart the level if R is pressed
+		// If R, restart level
 		if (input.isKeyPressed(Input.KEY_R)) {
 			restartLevel();
 		}
@@ -141,15 +158,20 @@ public static boolean isBlocked(Position pos) {
 		if (input.isKeyPressed(Input.KEY_Z)) {
 			undoMovables();
 		}
+		
+		
 		// do player first:
 		for (Sprite player : sprites) {
 			if (player != null && player.compareTag("player")) {
-				//System.out.println(input);
 				
 				// TODO check if it's moved
-				player.update(input, delta);
+				player.update(delta);
 			}
 		}
+		
+		// for movables:
+		// for sprite:sprites where tag == movable
+		// onMove
 		for (Sprite sprite : sprites) {
 			if (sprite != null) {
 				
@@ -169,9 +191,10 @@ public static boolean isBlocked(Position pos) {
 					}
 					
 					if (sprite.compareTag("tnt")) {
-						// if the tntt hit's a cracked wall... 
+						// if the tnt hit's a cracked wall... 
+						
 						if (getSpriteOfType("cracked", sprite.getX(), sprite.getY()) != null) {
-							destroySprite(sprite);
+							//destroySprite(sprite);
 						}
 					}
 					
@@ -182,8 +205,9 @@ public static boolean isBlocked(Position pos) {
 				// now for the eneie
 				else if (sprite.compareTag("enemy")) {
 					
-					
+					//sprite.update(delta);
 					// check uml. Need to change update in sprite
+					
 					if (sprite.compareTag("skeleton")) {
 						((Skeleton)sprite).update(delta);
 					}
@@ -200,7 +224,7 @@ public static boolean isBlocked(Position pos) {
 						return;
 					}
 				} else {
-					sprite.update(input, delta);
+					sprite.update(delta);
 				}
 				
 			}
@@ -234,7 +258,7 @@ public static boolean isBlocked(Position pos) {
 	}
 	
 	public void restartLevel() {
-		new World(level);
+		new World(curr_level);
 	}
 	
 	public boolean hasWon() {
@@ -249,13 +273,13 @@ public static boolean isBlocked(Position pos) {
 	}
 	
 	public void loadNextLevel() {
-		System.out.println("Loading level: " + level);
-		if (level >= MAX_LVL) {
+		System.out.println("Loading level: " + curr_level);
+		if (curr_level >= MAX_LVL) {
 			// do something
 			// maybe timer for 5 seconds then leave?
 		} else {
-			level++;
-			new World(level);
+			curr_level++;
+			new World(curr_level);
 		}
 		
 	}

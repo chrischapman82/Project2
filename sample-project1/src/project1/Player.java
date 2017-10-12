@@ -4,14 +4,20 @@ import org.newdawn.slick.Input;
 
 public class Player extends Movable {
 	
+	private int moveCount;
+	private int dir;
+	
 	public Player(float x, float y) {
 		super("res/player_left.png", x, y);
 		this.addTag("player");
 		this.addTag("can_push");
+		moveCount = 0;
+		dir = DIR_NONE;
 	}
 
 	@Override
-	public void update(Input input, int delta) {
+	public void update(int delta) {
+		Input input = World.input;
 		int dir = DIR_NONE;
 
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
@@ -37,4 +43,5 @@ public class Player extends Movable {
 		// Move to our destination
 		//moveDir(dir);
 	}
+	
 }

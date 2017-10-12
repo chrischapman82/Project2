@@ -70,30 +70,32 @@ public class Sprite {
 		return false;
 	}
 	
-	public void update(Input input, int delta) {
+	public void update(int delta) {
 		
 	}
 	
 	// in here for privacy reasons!
 	// Try to get this working later. Used for all movement like pushing and moveDir!
-	public Position getDest(int dir, float speed) {
+	// Returns the position from a sprite in a given direction, the size of the tile
+	// and the number of tiles in that direction
+	public Position getDest(int dir, float tile_size, int num_tiles) {
 		float delta_x = 0,
 				delta_y = 0;
 		switch (dir) {
 			case DIR_LEFT:
-				delta_x = -speed;
+				delta_x = -tile_size;
 				break;
 			case DIR_RIGHT:
-				delta_x = speed;
+				delta_x = tile_size;
 				break;
 			case DIR_UP:
-				delta_y = -speed;
+				delta_y = -tile_size;
 				break;
 			case DIR_DOWN:
-				delta_y = speed;
+				delta_y = tile_size;
 				break;
 		}
-		Position pos = new Position(x + delta_x,y + delta_y);
+		Position pos = new Position(x + num_tiles*delta_x, y + num_tiles*delta_y);
 		return pos;
 	}
 	

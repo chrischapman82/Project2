@@ -5,6 +5,7 @@ public abstract class Pushable extends Movable {
 	public Pushable(String sprite_name, float x, float y) {
 		super(sprite_name, x, y);
 		this.addTag("pushable");
+		this.addTag("blocked");
 	}
 	
 	public void push(int dir) {

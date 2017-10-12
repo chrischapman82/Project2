@@ -16,9 +16,8 @@ public class Skeleton extends Movable {
 	
 	public void update(int delta) {
 		timer.update(delta);
-		
 		if (timer.expired()) {
-			if (World.isBlocked(this.getDest(dir, App.TILE_SIZE))) {
+			if (World.isBlocked(this.getDest(dir, App.TILE_SIZE, 1))) {
 				
 				// switch direction between up/down
 				if (dir == DIR_UP) {
@@ -29,5 +28,9 @@ public class Skeleton extends Movable {
 			}
 			this.moveDir(dir);
 		}
+	}
+	
+	public void onMove(int dir, float testX, float testY) {
+		
 	}
 }

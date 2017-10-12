@@ -12,7 +12,16 @@ public class Rogue extends Movable {
 	}
 	
 	public void update(int delta) {
-		if (World.isBlocked(this.getDest(dir, App.TILE_SIZE))) {
+		
+		// if the player hasn't done anything. Don't do anything
+		if (!World.playerMoved) {
+			return;
+		}
+		
+		if (World.getSpriteOfType("pushable", getX(), getY()) == null) {
+			// push it honey
+		}
+		if (World.isBlocked(this.getDest(dir, App.TILE_SIZE, 1))) {
 			
 			// switch direction between up/down
 			if (dir == DIR_LEFT) {

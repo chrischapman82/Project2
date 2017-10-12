@@ -80,4 +80,8 @@ public class Ice extends Pushable {
 			time -= 100;
 		}
 	}
+	
+	public void onMove(int dir, float textX, float testY) {
+		
+	}
 }
