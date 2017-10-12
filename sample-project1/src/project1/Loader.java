@@ -24,17 +24,57 @@ public class Loader {
 	private static Sprite createSprite(String name, float x, float y) {
 		switch (name) {
 			case "wall":
-				return new Wall(x, y);
+				return new Wall(x,y);
 			case "floor":
-				return new Floor(x, y);
+				return new Floor(x,y);
 			case "stone":
-				return new Stone(x, y);
+				return new Stone(x,y);
 			case "target":
-				return new Target(x, y);
+				return new Target(x,y);
 			case "player":
-				return new Player(x, y);
+				return new Player(x,y);
+			case "cracked_wall":
+				return new Cracked(x,y);
+			case "door":
+				return new Door(x,y);
+			case "ice":
+				return new Ice(x,y);
+			case "skeleton":
+				return new Skeleton(x,y);
+			case "mage":
+				return new Mage(x,y);
+			case "rogue":
+				return new Rogue(x,y);
+			case "switch":
+				return new Switch(x,y);
+				
+			default:
+				return new Floor(x,y);
 		}
-		return null;
+		//return null;
+	}
+	
+	// converts a world coord to a tile coord
+	public static float getTileX(float x) {
+		x -= offset_x;
+		x /= App.TILE_SIZE;
+		x = Math.round(x);
+		return x;
+	}
+	
+	// see if you can do in place!
+	public static float getTileY(float y) {
+		y -= offset_y;
+		y /= App.TILE_SIZE;
+		y = Math.round(y);
+		return y;
+	}
+	
+	public static boolean inBounds(int tx, int ty) {
+		if (tx >= 0 && tx < world_width && ty >= 0 && ty < world_height) {
+			return true;
+		}
+		return false;
 	}
 	
 	// Converts a world coordinate to a tile coordinate,
@@ -48,7 +88,6 @@ public class Loader {
 		// Rounding is important here
 		x = Math.round(x);
 		y = Math.round(y);
-		
 		// Do bounds checking!
 		if (x >= 0 && x < world_width && y >= 0 && y < world_height) {
 			return types[(int)x][(int)y].equals("wall");

@@ -35,7 +35,7 @@ public class App extends BasicGame
     public void init(GameContainer gc)
     throws SlickException
     {
-    	world = new World();
+    	world = new World(0);
     }
 
     /** Update the game state for a frame.

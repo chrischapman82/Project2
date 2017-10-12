@@ -2,10 +2,11 @@ package project1;
 
 import org.newdawn.slick.Input;
 
-public class Player extends Sprite {
+public class Player extends Movable {
 	
 	public Player(float x, float y) {
 		super("res/player_left.png", x, y);
+		this.addTag("player");
 	}
 
 	@Override
@@ -24,7 +25,13 @@ public class Player extends Sprite {
 		else if (input.isKeyPressed(Input.KEY_DOWN)) {
 			dir = DIR_DOWN;
 		}
-		
+		World.playerInput = dir;
+
+		// bad privacy
+		if (dir != DIR_NONE) {
+			//World.playerMoved = true;
+			//World.num_moves++;
+		}
 		// Move to our destination
 		moveDir(dir);
 	}
