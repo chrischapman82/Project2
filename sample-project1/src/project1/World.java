@@ -10,14 +10,16 @@ public class World {
 	private static int level;
 	//private Input input;
 	// private int nextLevel;
-	public static int num_moves = 0;
-	public static boolean playerMoved = false;
+	public static int num_moves;
+	public static boolean playerMoved;
 	public static int playerInput;
 	
 	static final int MAX_LVL = 5;
 	public World(int level) {
 		curr_lvl = "res/levels/" + Integer.toString(level) + ".lvl";
 		sprites = Loader.loadSprites(curr_lvl);
+		playerMoved = false;
+		num_moves = 0;
 		//this.level = level;
 	}
 	
@@ -45,13 +47,24 @@ public class World {
 			return true;
 		}
 		
-		// for the door case
-
+		return false;
+	}
+	
+	
+public static boolean isBlocked(Position pos) {
 		
-		// if there's a pushable object, only go there if it can move as well!
-		//if (getSpriteOfType("pushable", x, y) != null && ) {
-			
-		//}
+		// checks that it's in bounds
+		// maybe could put getTileX and Y in Loader inBounds
+		if (!Loader.inBounds((int)Loader.getTileX(pos.getX()),(int)Loader.getTileY(pos.getY()))) {
+			return true;
+		}
+		
+		//System.out.println(x);
+		if (getSpriteOfType("blocked", pos.getX(), pos.getY()) != null) {
+			// also check that it's not blocked by a sprite!
+			System.out.println("Is blocked");
+			return true;
+		}
 		
 		return false;
 	}
@@ -90,14 +103,13 @@ public class World {
 	
 	public static Sprite getSpriteOfType(String tag, float x, float y) {
 		for (Sprite sprite : sprites) {
-			//System.out.println(tag);
-			//System.out.println(Loader.getTileX(x));
-			//System.out.println(Loader.getTileX(sprite.getX()));
+			
 			if (sprite.compareTag(tag) 	&& (Loader.getTileX(x) == Loader.getTileX(sprite.getX())) 
 										&& (Loader.getTileY(y) == Loader.getTileY(sprite.getY()))) {
 				return sprite;
 			}
 		}
+		
 		// returns null if nothing there
 		return null;
 	}
@@ -133,6 +145,8 @@ public class World {
 		for (Sprite player : sprites) {
 			if (player != null && player.compareTag("player")) {
 				//System.out.println(input);
+				
+				// TODO check if it's moved
 				player.update(input, delta);
 			}
 		}
@@ -146,7 +160,12 @@ public class World {
 					if (getSpriteOfType("player", sprite.getX(), sprite.getY()) != null) {
 						System.out.println("I've got a player on me!");
 						System.out.println(playerInput);
-						((Pushable)sprite).push(playerInput);	
+						((Pushable)sprite).push(playerInput);
+					}
+					
+					// see if it's on a switch
+					if (getSpriteOfType("switch", sprite.getX(), sprite.getY()) != null) {
+						
 					}
 					
 					if (sprite.compareTag("tnt")) {
@@ -158,6 +177,27 @@ public class World {
 					
 					if (sprite.compareTag("ice"))  {
 						((Ice)sprite).update(delta);
+					}
+				} 
+				// now for the eneie
+				else if (sprite.compareTag("enemy")) {
+					
+					
+					// check uml. Need to change update in sprite
+					if (sprite.compareTag("skeleton")) {
+						((Skeleton)sprite).update(delta);
+					}
+					if (sprite.compareTag("rogue") && playerMoved) {
+						((Rogue)sprite).update(delta);
+						//TODO push blocks
+					}
+					if (sprite.compareTag("mage") && playerMoved) {
+						((Mage)sprite).update(delta);
+					}
+					// check if the enemy killed you!
+					if (getSpriteOfType("player", sprite.getX(), sprite.getY()) != null) {
+						restartLevel();
+						return;
 					}
 				} else {
 					sprite.update(input, delta);
@@ -187,7 +227,6 @@ public class World {
 		g.drawString("Moves: " + num_moves, 0, 0);
 		if (playerMoved) {
 			num_moves++;
-			
 			playerMoved = false;
 		}
 		
@@ -195,7 +234,6 @@ public class World {
 	}
 	
 	public void restartLevel() {
-		num_moves = 0;
 		new World(level);
 	}
 	
@@ -217,7 +255,6 @@ public class World {
 			// maybe timer for 5 seconds then leave?
 		} else {
 			level++;
-			num_moves = 0;
 			new World(level);
 		}
 		

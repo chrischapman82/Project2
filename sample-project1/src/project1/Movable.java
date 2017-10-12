@@ -87,7 +87,7 @@ public abstract class Movable extends Sprite{
 		System.out.println(this.toString());
 		
 		// USE getDest later. Better for privacy.
-		//Position pos = this.getDest(dir, speed);
+		// Position pos = this.getDest(dir, speed);
 		// else go about your day
 		float delta_x = 0,
 				delta_y = 0;
@@ -122,7 +122,6 @@ public abstract class Movable extends Sprite{
 					return;
 				}
 			}
-			World.playerMoved = true;
 			
 			// moves this block to it's new home
 			this.setX(this.getX() + delta_x);

@@ -69,10 +69,11 @@ public class Ice extends Pushable {
 		}
 	}
 	
+	// TODO use timer here
 	public void update(int delta) {
 		
-		System.out.println("Updating ice!" + dir);
-		System.out.println(delta);
+		//System.out.println("Updating ice!" + dir);
+		//System.out.println(delta);
 		time += delta;
 		if (time > 100) {
 			push(dir);

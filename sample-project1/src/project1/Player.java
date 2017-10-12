@@ -7,6 +7,7 @@ public class Player extends Movable {
 	public Player(float x, float y) {
 		super("res/player_left.png", x, y);
 		this.addTag("player");
+		this.addTag("can_push");
 	}
 
 	@Override
@@ -29,10 +30,11 @@ public class Player extends Movable {
 
 		// bad privacy
 		if (dir != DIR_NONE) {
-			//World.playerMoved = true;
-			//World.num_moves++;
+			World.playerMoved = true;
+			moveDir(dir);
 		}
+		// otherwise do nothing
 		// Move to our destination
-		moveDir(dir);
+		//moveDir(dir);
 	}
 }
