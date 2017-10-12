@@ -33,7 +33,7 @@ public class Loader {
 				return new Target(x,y);
 			case "player":
 				return new Player(x,y);
-			case "cracked_wall":
+			case "cracked":
 				return new Cracked(x,y);
 			case "door":
 				return new Door(x,y);
@@ -47,6 +47,8 @@ public class Loader {
 				return new Rogue(x,y);
 			case "switch":
 				return new Switch(x,y);
+			case "tnt":
+				return new Tnt(x,y);
 				
 			default:
 				return new Floor(x,y);

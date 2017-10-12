@@ -5,13 +5,16 @@ public class Ice extends Pushable {
 	private int dir;
 	private float lastX;
 	private float lastY;
-
+	private int time;
+	//private Timer timer;
 	
 	public Ice(float x, float y) {
 		super("res/ice.png", x, y);
 		lastX = x;
 		lastY = y;
+		time = 0;
 		dir = Sprite.DIR_NONE;
+		this.addTag("ice");
 	}
 	
 	public void addToHistory() {
@@ -56,7 +59,7 @@ public class Ice extends Pushable {
 		float candidate_x = this.getX() + delta_x;
 		float candidate_y =  this.getY() + delta_y;
 		if (!World.isBlocked(candidate_x, candidate_y) && 
-				(World.getSpriteOfType("pushable", candidate_x, candidate_y) != null)) {
+				(World.getSpriteOfType("pushable", candidate_x, candidate_y) == null)) {
 			
 			this.setX(this.getX() + delta_x);
 			this.setY(this.getY() + delta_y);
@@ -67,8 +70,13 @@ public class Ice extends Pushable {
 	}
 	
 	public void update(int delta) {
-		if (delta%100 == 0) {
-			this.moveDir(dir);
+		
+		System.out.println("Updating ice!" + dir);
+		System.out.println(delta);
+		time += delta;
+		if (time > 100) {
+			push(dir);
+			time -= 100;
 		}
 	}
 }

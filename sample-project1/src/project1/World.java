@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 public class World {
-	public static ArrayList<Sprite> sprites;
+	private static ArrayList<Sprite> sprites;
 	private static String curr_lvl;
 	private static int level;
 	//private Input input;
@@ -26,7 +26,8 @@ public class World {
 	}
 	
 	public static void destroySprite(Sprite sprite) {
-		
+		//sprites.remove(sprite);
+		System.out.println();
 	}
 	
 	public static boolean isBlocked(float x, float y) {
@@ -43,6 +44,9 @@ public class World {
 			System.out.println("Is blocked");
 			return true;
 		}
+		
+		// for the door case
+
 		
 		// if there's a pushable object, only go there if it can move as well!
 		//if (getSpriteOfType("pushable", x, y) != null && ) {
@@ -142,8 +146,18 @@ public class World {
 					if (getSpriteOfType("player", sprite.getX(), sprite.getY()) != null) {
 						System.out.println("I've got a player on me!");
 						System.out.println(playerInput);
-						((Pushable)sprite).push(playerInput);
-						
+						((Pushable)sprite).push(playerInput);	
+					}
+					
+					if (sprite.compareTag("tnt")) {
+						// if the tntt hit's a cracked wall... 
+						if (getSpriteOfType("cracked", sprite.getX(), sprite.getY()) != null) {
+							destroySprite(sprite);
+						}
+					}
+					
+					if (sprite.compareTag("ice"))  {
+						((Ice)sprite).update(delta);
 					}
 				} else {
 					sprite.update(input, delta);
@@ -157,13 +171,14 @@ public class World {
 			System.out.println("Updating history!");
 			updateMovableHistory();
 		}
-		
-		
 	}
 	
 	public void render(Graphics g) {
 		for (Sprite sprite : sprites) {
 			if (sprite != null) {
+				if (sprite.compareTag("tnt")) {
+					
+				}
 				sprite.render(g);
 			}
 		}

@@ -11,7 +11,7 @@ public class Timer {
 	}
 	
 	public void update(int delta) {
-		
+		time = (int)System.currentTimeMillis();
 	}
 	
 	public boolean expired() {
