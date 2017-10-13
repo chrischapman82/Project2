@@ -4,13 +4,21 @@ public class Rogue extends Movable {
 	
 	private int dir;
 	public Rogue(float x, float y) {
-		super("res/rogue.png", x, y);
+		super(Constant.ROGUE_PATH, x, y);
 		this.dir = DIR_LEFT;
-		this.addTag("rogue");
-		this.addTag("enemy");
-		this.addTag("can_push");
+		this.addTag(Tag.ROGUE);
+		this.addTag(Tag.ENEMY);
+		this.addTag(Tag.CAN_PUSH);
 	}
 	
+	public int getDir() {
+		return dir;
+	}
+
+	public void setDir(int dir) {
+		this.dir = dir;
+	}
+
 	public void update(int delta) {
 		
 		// if the player hasn't done anything. Don't do anything
@@ -18,18 +26,19 @@ public class Rogue extends Movable {
 			return;
 		}
 		
-		if (World.getSpriteOfType("pushable", getX(), getY()) == null) {
-			// push it honey
-		}
-		if (World.isBlocked(this.getDest(dir, App.TILE_SIZE, 1))) {
+		Position dest = this.getDest(dir, App.TILE_SIZE, 1);
+		// so that it won't push 
+		// checks whether the destination is blocked AND that there isn't a pushable block
+		if (World.isBlocked(dest) 
+				&& !(World.hasSpriteAtPos(Tag.PUSHABLE, dest) && !World.isBlocked(this.getDest(delta, App.TILE_SIZE, 2)))) {
 			
 			// switch direction between up/down
-			if (dir == DIR_LEFT) {
-				dir = DIR_RIGHT;
+			if (this.dir == DIR_LEFT) {
+				this.dir = DIR_RIGHT;
 			} else {
-				dir = DIR_LEFT;
+				this.dir = DIR_LEFT;
 			}
 		}
-		this.moveDir(dir);
+		this.moveDir(this.dir);
 	}
 }

@@ -35,6 +35,17 @@ public class Sprite {
 		snapToGrid();
 	}
 	
+	public Position getPos() {
+		Position pos = new Position(x,y);
+		return pos;
+	}
+	
+	public void setPos(Position pos) {
+		x = pos.getX();
+		y = pos.getY();
+		snapToGrid();
+	}
+	
 	// dunno if I want these!
 	public float getX() {
 		return x;
@@ -42,6 +53,7 @@ public class Sprite {
 
 	public void setX(float x) {
 		this.x = x;
+		snapToGrid();
 	}
 
 	public float getY() {
@@ -50,6 +62,7 @@ public class Sprite {
 
 	public void setY(float y) {
 		this.y = y;
+		snapToGrid();
 	}
 
 	public void addTag(String tag) {
@@ -95,8 +108,15 @@ public class Sprite {
 				delta_y = tile_size;
 				break;
 		}
-		Position pos = new Position(x + num_tiles*delta_x, y + num_tiles*delta_y);
+		
+		Position pos = new Position(this.x + num_tiles*delta_x, this.y + num_tiles*delta_y);
 		return pos;
+	}
+	
+	// when using the standard speed
+	public Position getDest(int dir, int num_tiles) {
+		float tile_size = App.TILE_SIZE;
+		return getDest(dir, tile_size, num_tiles);
 	}
 	
 	public void render(Graphics g) {

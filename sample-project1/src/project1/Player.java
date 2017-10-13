@@ -9,11 +9,37 @@ public class Player extends Movable {
 	
 	public Player(float x, float y) {
 		super("res/player_left.png", x, y);
-		this.addTag("player");
-		this.addTag("can_push");
+		this.addTag(Tag.PLAYER);
+		this.addTag(Tag.CAN_PUSH);
+		this.addTag(Tag.UNDOABLE);
 		moveCount = 0;
 		dir = DIR_NONE;
 	}
+
+	/* Get the move!
+	 *  
+	 */
+	public int getMoveCount() {
+		return moveCount;
+	}
+
+	/* 
+	 * https://stackoverflow.com/questions/1028967/simple-getter-setter-comments
+	 */
+	public void setMoveCount(int moveCount) {
+		this.moveCount = moveCount;
+	}
+
+
+	public int getDir() {
+		return dir;
+	}
+
+
+	public void setDir(int dir) {
+		this.dir = dir;
+	}
+
 
 	@Override
 	public void update(int delta) {
@@ -32,7 +58,7 @@ public class Player extends Movable {
 		else if (input.isKeyPressed(Input.KEY_DOWN)) {
 			dir = DIR_DOWN;
 		}
-		World.playerInput = dir;
+		World.playerDir = dir;
 
 		// bad privacy
 		if (dir != DIR_NONE) {

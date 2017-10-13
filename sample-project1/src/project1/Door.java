@@ -4,8 +4,8 @@ public class Door extends Sprite {
 
 	private boolean closed;
 	public Door(float x, float y) {
-		super("res/door.png", x, y);
-		this.addTag("door");
+		super(Constant.DOOR_PATH, x, y);
+		this.addTag(Tag.DOOR);
 		closed = true;
 	}
 	

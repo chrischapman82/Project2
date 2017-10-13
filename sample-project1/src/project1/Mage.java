@@ -5,9 +5,9 @@ public class Mage extends Movable {
 	private int dir1;
 	private int dir2;
 	public Mage(float x, float y) {
-		super("res/mage.png", x, y);
-		this.addTag("enemy");
-		this.addTag("mage");
+		super(Constant.MAGE_PATH, x, y);
+		this.addTag(Tag.ENEMY);
+		this.addTag(Tag.MAGE);
 	}
 	
 	public void update(int delta) {

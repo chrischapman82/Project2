@@ -2,19 +2,19 @@ package project1;
 
 public class Ice extends Pushable {
 	
-	private int dir;
+	private int dir;		// the direction the ice is currently moving. If DIR_NONE, then it's stopped
 	private float lastX;
 	private float lastY;
 	private int time;
 	//private Timer timer;
 	
 	public Ice(float x, float y) {
-		super("res/ice.png", x, y);
+		super(Constant.ICE_PATH, x, y);
 		lastX = x;
 		lastY = y;
 		time = 0;
 		dir = Sprite.DIR_NONE;
-		this.addTag("ice");
+		this.addTag(Tag.ICE);
 	}
 	
 	public void addToHistory() {
@@ -36,49 +36,35 @@ public class Ice extends Pushable {
 		float speed = App.TILE_SIZE;
 		// Translate the direction to an x and y displacement
 		// maybe should do get_displacement for less code duplication, returning position delta_x, delta_y!
-		float delta_x = 0,
-				delta_y = 0;
-		switch (dir) {
-			case DIR_LEFT:
-				delta_x = -speed;
-				break;
-			case DIR_RIGHT:
-				delta_x = speed;
-				break;
-			case DIR_UP:
-				delta_y = -speed;
-				break;
-			case DIR_DOWN:
-				delta_y = speed;
-				break;
-		}
 		
+		Position candidate_pos = this.getDest(dir, speed, 1);
 		// Make sure the position isn't occupied!
 		// If it isn't blocked, move there.
 		// Ice needs to take into account blocks as well!
-		float candidate_x = this.getX() + delta_x;
-		float candidate_y =  this.getY() + delta_y;
-		if (!World.isBlocked(candidate_x, candidate_y) && 
-				(World.getSpriteOfType("pushable", candidate_x, candidate_y) == null)) {
+		if (!World.isBlocked(candidate_pos)) {
 			
-			this.setX(this.getX() + delta_x);
-			this.setY(this.getY() + delta_y);
+			this.setX(candidate_pos.getX());
+			this.setY(candidate_pos.getY());
 		} else {
 			// if it's blocked, stop where it is
-			dir = DIR_NONE;
+			this.dir = DIR_NONE;
 		}
 	}
 	
 	// TODO use timer here
 	public void update(int delta) {
 		
-		//System.out.println("Updating ice!" + dir);
-		//System.out.println(delta);
-		time += delta;
-		if (time > 100) {
-			push(dir);
-			time -= 100;
+		// only updates the time when the ice is travelling in a direction!
+		if (dir != DIR_NONE) {
+			
+			// when it is moving, 
+			time += delta;
+			if (time > Constant.DELTA_IN_SECOND) {
+				push(dir);
+				time -= Constant.DELTA_IN_SECOND;
+			}
 		}
+		
 	}
 	
 	public void onMove(int dir, float textX, float testY) {

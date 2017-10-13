@@ -4,8 +4,8 @@ public class Switch extends Sprite{
 	
 	Door door;
 	public Switch(float x, float y) {
-		super("res/switch.png", x, y);
-		this.addTag("switch");
+		super(Constant.SWITCH_PATH, x, y);
+		this.addTag(Tag.SWITCH);
 	}
 	
 	public void setDoor(Door door) {
@@ -13,7 +13,7 @@ public class Switch extends Sprite{
 	}
 	
 	public void update(int delta) {
-		if (World.getSpriteOfType("pushable", this.getX(), this.getY()) != null) {
+		if (World.getSpriteOfType(Tag.PUSHABLE, this.getX(), this.getY()) != null) {
 		}
 	}
 }

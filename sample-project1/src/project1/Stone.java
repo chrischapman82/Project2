@@ -4,9 +4,9 @@ import org.newdawn.slick.Input;
 
 public class Stone extends Pushable {
 	public Stone(float x, float y) {
-		super("res/stone.png", x, y);
-		this.addTag("stone");
-		//this.addTag("blocked");
+		super(Constant.STONE_PATH, x, y);
+		this.addTag(Tag.STONE);
+		this.addTag(Tag.BLOCKED);
 	}
 	
 }

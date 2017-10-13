@@ -51,7 +51,7 @@ public class Loader {
 				return new Tnt(x,y);
 				
 			default:
-				return new Floor(x,y);
+				return null;
 		}
 		//return null;
 	}
@@ -78,7 +78,8 @@ public class Loader {
 		}
 		return false;
 	}
-	
+	/*
+	 * don't need
 	// Converts a world coordinate to a tile coordinate,
 	// and returns if that location is a blocked tile
 	public static boolean isBlocked(float x, float y) {
@@ -96,7 +97,7 @@ public class Loader {
 		}
 		// Default to blocked
 		return true;
-	}
+	}*/
 		
 	/**
 	 * Loads the sprites from a given file.

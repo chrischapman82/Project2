@@ -9,8 +9,8 @@ public class Skeleton extends Movable {
 	public Skeleton(float x, float y) {
 		super("res/skull.png", x, y);
 		this.dir = DIR_UP;
-		this.addTag("skeleton");
-		this.addTag("enemy");
+		this.addTag(Tag.SKELETON);
+		this.addTag(Tag.ENEMY);
 		timer = new Timer(0,Timer.DELTA_IN_SECOND);		// TODO timer target
 	}
 	
