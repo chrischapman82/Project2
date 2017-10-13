@@ -63,6 +63,7 @@ public class Player extends Movable {
 		// bad privacy
 		if (dir != DIR_NONE) {
 			World.playerMoved = true;
+			World.updateMovableHistory();
 			moveDir(dir);
 		}
 		// otherwise do nothing

@@ -22,7 +22,7 @@ public abstract class Movable extends Sprite{
 	}
 	
 	public void addToHistory() {
-		if (stack.size() > 20) {
+		if (stack.size() > Constant.MAX_STACK_SIZE) {
 			removeFromHistory(0);
 		}
 		Position curr_pos = new Position(this.getX(), this.getY());
@@ -49,12 +49,18 @@ public abstract class Movable extends Sprite{
 	
 	public void undo() {
 		
-		// only undo if it has history
-		if (this.hasHistory()) {
-			System.out.println("Has History!");
+		if (hasHistory()) {
+			
+			
 			Position prev_pos = stack.pop();
+			if (this.compareTag("player")) {
+				System.out.println("Has History! size  = " + stack.size());
+				System.out.format("%f %f", prev_pos.getX(), prev_pos.getY());
+			}
+			
 			// I'd like to make this all position rather than x and y
 			this.setPos(prev_pos);
+			
 			//this.setX(prev_pos.getX());
 			//this.setY(prev_pos.getY());
 		}
@@ -63,9 +69,39 @@ public abstract class Movable extends Sprite{
 		
 	}
 	
+	
+	// Moves @ the standard speed!
+	public boolean canMoveDir(int dir) {
+		return canMoveDir(dir, App.TILE_SIZE);
+	}
+	
+	// checks if the given sprite can move a certain direction!
+	// the given dir
+	public boolean canMoveDir(int dir, float speed) {
+		
+		Position candidatePos = this.getDest(dir, speed, 1);
+		
+		if (World.isBlocked(candidatePos)) {
+			// some boolean algebra equive for:
+			// if (this.compareTag("can_push") && World.hasSpriteAtPos("pushable", candidatePos)) {
+			if (!this.compareTag(Tag.CAN_PUSH) || !World.hasSpriteAtPos(Tag.PUSHABLE, candidatePos)) {
+				return false;
+			}
+			
+			// This means that this object can push, and checks
+			// If there's an object blocking the way of the pushable object in front of this sprite, then don't you dare move!
+			// Check 2 tiles away
+			if ((World.isBlocked(this.getDest(dir, speed, 2)))) {
+				// don't move
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public void moveDir(int dir) {
 		
-		// the normal speed!
+		// In general, the std speed
 		float speed = App.TILE_SIZE;
 		this.moveDir(dir, speed);
 		// Translate the direction to an x and y displacement
@@ -81,30 +117,10 @@ public abstract class Movable extends Sprite{
 			return;
 		}
 		
-		System.out.println("moving");
-		System.out.println(this.toString());
-		
-		Position candidatePos = this.getDest(dir, speed, 1);
-		
-		if (World.isBlocked(candidatePos)) {
-			// some good ol boolean answer for opposite of:
-			// if (this.compareTag("can_push") && World.getSpriteOfType("pushable", candidatePos) != null) {
-			if (!this.compareTag(Tag.CAN_PUSH) || !World.hasSpriteAtPos(Tag.PUSHABLE, candidatePos)) {
-				return;
-			}
-			
-			// This means that this object can push, and checks
-			// If there's an object blocking the way of the pushable object in front of this sprite, then don't you dare move!
-			// Check 2 tiles away
-			if ((World.isBlocked(this.getDest(dir, speed, 2)))) {
-				// don't move
-				return;
-			}
+		if (canMoveDir(dir, speed)) {
+			Position candidatePos = this.getDest(dir, speed, 1);
+			this.setPos(candidatePos);
 		}
-			
-		// moves this sprite to its new home
-		this.setX(candidatePos.getX());
-		this.setY(candidatePos.getY());
 	}
 	
 	public void onMove(int dir, float testX, float testY) {

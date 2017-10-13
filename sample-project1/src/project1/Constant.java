@@ -16,6 +16,7 @@ public abstract class Constant {
 	public static final String DOOR_PATH = "res/door.png";
 	public static final String CRACKED = "res/cracked_wall.png";
 	
+	public static final int MAX_STACK_SIZE = 50;	// also the max number of undos
 	
 	
 	

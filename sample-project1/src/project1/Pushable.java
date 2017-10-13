@@ -4,10 +4,9 @@ public abstract class Pushable extends Movable {
 
 	public Pushable(String sprite_name, float x, float y) {
 		super(sprite_name, x, y);
-		this.addTag("pushable");
-		this.addTag("blocked");
-		this.addTag("undoable");
-		
+		this.addTag(Tag.PUSHABLE);
+		this.addTag(Tag.BLOCKED);
+		this.addTag(Tag.UNDOABLE);
 	}
 	
 	public void push(int dir) {
@@ -23,7 +22,7 @@ public abstract class Pushable extends Movable {
 	}
 	
 	public boolean active() {
-		if (World.getSpriteOfType("target", this.getX(), this.getY()) != null) {
+		if (World.getSpriteOfType(Tag.TARGET, this.getX(), this.getY()) != null) {
 			return true;
 		}
 		return false;

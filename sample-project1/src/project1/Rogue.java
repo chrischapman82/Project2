@@ -39,6 +39,7 @@ public class Rogue extends Movable {
 				this.dir = DIR_LEFT;
 			}
 		}
+		World.rogueDir = dir;
 		this.moveDir(this.dir);
 	}
 }

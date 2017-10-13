@@ -30,8 +30,8 @@ public class Ice extends Pushable {
 			return;
 		}
 		this.dir = dir;
-		System.out.println("ice moving");
-		System.out.println(this.toString());
+		lastX = this.getX();
+		lastY = this.getY();
 		
 		float speed = App.TILE_SIZE;
 		// Translate the direction to an x and y displacement
@@ -43,8 +43,9 @@ public class Ice extends Pushable {
 		// Ice needs to take into account blocks as well!
 		if (!World.isBlocked(candidate_pos)) {
 			
-			this.setX(candidate_pos.getX());
-			this.setY(candidate_pos.getY());
+			//this.setX(candidate_pos.getX());
+			//this.setY(candidate_pos.getY());
+			this.moveDir(dir);
 		} else {
 			// if it's blocked, stop where it is
 			this.dir = DIR_NONE;
@@ -59,9 +60,18 @@ public class Ice extends Pushable {
 			
 			// when it is moving, 
 			time += delta;
-			if (time > Constant.DELTA_IN_SECOND) {
-				push(dir);
-				time -= Constant.DELTA_IN_SECOND;
+			if (time > (Constant.DELTA_IN_SECOND * 4)) {
+				Position dest;
+				if (!World.isBlocked(dest = this.getDest(dir, 1))) {
+					this.setPos(dest);
+					time -= Constant.DELTA_IN_SECOND * 4;
+				} else {
+					
+					// reset the time and direction!
+					dir = DIR_NONE;
+					time = 0;
+				}
+
 			}
 		}
 		

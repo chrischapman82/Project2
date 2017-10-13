@@ -33,14 +33,12 @@ public class World {
 	
 	public static boolean isBlocked(float x, float y) {
 		
-		// checks that it's in bounds
-		// maybe could put getTileX and Y in Loader inBounds
+		// checks that the given pos is within the game bounds
 		if (!Loader.inBounds((int)Loader.getTileX(x),(int)Loader.getTileY(y))) {
 			return true;
 		}
 		
-		//System.out.println(x);
-		if (getSpriteOfType("blocked", x, y) != null) {
+		if (getSpriteOfType(Tag.BLOCKED, x, y) != null) {
 			// also check that it's not blocked by a sprite!
 			System.out.println("Is blocked");
 			return true;
@@ -51,14 +49,13 @@ public class World {
 	
 public static boolean isBlocked(Position pos) {
 		
-		// checks that it's in bounds
-		// maybe could put getTileX and Y in Loader inBounds
+		// checks that the requested position is in bounds
 		if (!Loader.inBounds((int)Loader.getTileX(pos.getX()),(int)Loader.getTileY(pos.getY()))) {
 			return true;
 		}
 		
-		//System.out.println(x);
-		if (getSpriteOfType("blocked", pos.getX(), pos.getY()) != null) {
+		// checks whether the requested position is taken by an object with the blocked tag
+		if (getSpriteOfType(Tag.BLOCKED, pos.getX(), pos.getY()) != null) {
 			// also check that it's not blocked by a sprite!
 			System.out.println("Is blocked");
 			return true;
@@ -67,28 +64,26 @@ public static boolean isBlocked(Position pos) {
 		return false;
 	}
 	
-	public void updateMovableHistory() {
+	public static void updateMovableHistory() {
 		for (Sprite sprite: sprites) {
 			if (sprite.compareTag("movable")) {
-				System.out.println("Adding to history!");
 				((Movable)sprite).addToHistory();
 			}
 		}
-		// for sprite:sprites: if movable, do the moveable stuff!
 	}
 	
 	public static void undoMovables() {
-		
 		for (Sprite sprite : sprites) {
-			if (sprite.compareTag("undoable")) {
+			// undo all movable sprites!
+			if (sprite.compareTag(Tag.UNDOABLE)) {
 				((Movable)sprite).undo();
-				System.out.println(sprite.getClass());
+				//System.out.println(sprite.getClass());
 			}
 			
 		}
 		// reduces by 1 each time!
 		// done as per specs, just decreases whenever the player undoes a move!
-		// However, doesn't go negative, as that would kinda be bad
+		// Cannot go negative!
 		if (num_moves > 0) {
 			num_moves--;
 		}
@@ -182,96 +177,68 @@ public static boolean isBlocked(Position pos) {
 		
 		// do player first:
 		for (Sprite player : sprites) {
-			if (player != null && player.compareTag("player")) {
+			if (player != null && player.compareTag(Tag.PLAYER)) {
 				
 				player.update(delta);
 			}
 		}
 		
-
 		//448,352 -> cracked pos
-		// do rogue next so that it can push blocks!
-		for (Sprite rogue : sprites) {
-			if (rogue != null && rogue.compareTag("rogue")) {
-				rogueDir = ((Rogue)rogue).getDir();
-				rogue.update(delta);
+		// next the enemies, as some have special interactions with other blocks
+		for (Sprite enemy : sprites) {
+			if (enemy != null && enemy.compareTag(Tag.ENEMY)) {
+				enemy.update(delta);
+				
+				
+				// checks if the player has hit an enemy
+				if (hasSpriteAtPos(Tag.PLAYER, enemy.getPos())) {
+					restartLevel();
+				}
 			}
 		}
 		
-		// for movables:
-		// for sprite:sprites where tag == movable
+		// Now for the rest!
 		for (Sprite sprite : sprites) {
 			if (sprite != null) {
 				
 				// for pushable objects!
-				if (sprite.compareTag("pushable")) {
+				if (sprite.compareTag(Tag.PUSHABLE)) {
 					
 					// If the player or rogue is on top of the pushable block, push it!
-					if (hasSpriteAtPos("player", sprite.getX(), sprite.getY())) {
+					if (hasSpriteAtPos(Tag.PLAYER, sprite.getX(), sprite.getY())) {
 						((Pushable)sprite).push(playerDir);
 					}
 					
-					if (hasSpriteAtPos("rogue", sprite.getX(), sprite.getY())) {
+					if (hasSpriteAtPos(Tag.ROGUE, sprite.getX(), sprite.getY())) {
 						((Pushable)sprite).push(rogueDir);
 					}
 					
-					if (sprite.compareTag("tnt")) {
+					if (sprite.compareTag(Tag.TNT)) {
 						// if the tnt hit's a cracked wall... 
 						
-						if (getSpriteOfType("cracked", sprite.getX(), sprite.getY()) != null) {
+						if (getSpriteOfType(Tag.CRACKED, sprite.getX(), sprite.getY()) != null) {
 							System.out.println("hey guys");
 							//destroySprite(sprite);
 						}
 					}
 					
-					if (sprite.compareTag("ice"))  {
+					if (sprite.compareTag(Tag.ICE))  {
 						((Ice)sprite).update(delta);
 					}
-				} 
-				// now for the enemies
-				else if (sprite.compareTag("enemy")) {
-					
-					//sprite.update(delta);
-					// check uml. Need to change update in sprite
-					
-					if (sprite.compareTag("skeleton")) {
-						((Skeleton)sprite).update(delta);
-					}
-					/*
-					if (sprite.compareTag("rogue") && playerMoved) {
-						((Rogue)sprite).update(delta);
-						//TODO push blocks
-					}*/
-					if (sprite.compareTag("mage") && playerMoved) {
-						((Mage)sprite).update(delta);
-					}
-					// check if the enemy killed you!
-					if (getSpriteOfType("player", sprite.getX(), sprite.getY()) != null) {
-						restartLevel();
-						return;
-					}
-				} else {
+				} else if (!sprite.compareTag(Tag.ENEMY)){
 					sprite.update(delta);
 				}
 				
 			}
 			
 			for (Sprite test : sprites) {
-				if (test.compareTag("tnt")) {
-					if (hasSpriteAtPos("cracked", test.getPos())) {
-						Sprite cracked = getSpriteOfType("cracked", test.getX(), test.getY());
+				if (test.compareTag(Tag.TNT)) {
+					if (hasSpriteAtPos(Tag.CRACKED, test.getPos())) {
+						Sprite cracked = getSpriteOfType(Tag.CRACKED, test.getX(), test.getY());
 						System.out.println(cracked.getX());
 					}
-					
-					
 				}
 			}
-		}
-		
-		// update all movables whenever the player moves!
-		if (playerMoved) {
-			System.out.println("Updating history!");
-			updateMovableHistory();
 		}
 	}
 	
@@ -300,7 +267,6 @@ public static boolean isBlocked(Position pos) {
 	}
 	
 	public boolean hasWon() {
-		
 		for (Sprite sprite: sprites) {
 			if (sprite.compareTag("target") && !((Target)sprite).activated()) {
 				return false;
