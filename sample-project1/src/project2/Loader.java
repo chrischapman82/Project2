@@ -1,4 +1,4 @@
-package project1;
+package project2;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,11 +6,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/** SWEN20003 Object Oriented Software Development 
+ * Project 2
+ * @author Christopher Chapman
+ * Student no: 767336
+ * Email: chapmanc1@student.unimelb.edu.au
+ */
 public class Loader {
+	/**
+	 * 
+	 */
 	private static String[][] types;
 	
+	// the world dimensions
 	private static int world_width;
 	private static int world_height;
+	
+	// Offset so that the game is placed towards the center of the screen 
 	private static int offset_x;
 	private static int offset_y;
 	
@@ -20,6 +32,12 @@ public class Loader {
 	 * @param x		the x position
 	 * @param y		the y position
 	 * @return		the sprite object
+	 */
+	/**
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @return
 	 */
 	private static Sprite createSprite(String name, float x, float y) {
 		switch (name) {
@@ -49,14 +67,17 @@ public class Loader {
 				return new Switch(x,y);
 			case "tnt":
 				return new Tnt(x,y);
-				
+			case "explosion":
+				return new Explosion(x,y);
 			default:
 				return null;
 		}
-		//return null;
 	}
 	
-	// converts a world coord to a tile coord
+	/** Converts a world X value to a tile x value
+	 * @param x value
+	 * @return The tile representation of x
+	 */
 	public static float getTileX(float x) {
 		x -= offset_x;
 		x /= App.TILE_SIZE;
@@ -64,7 +85,10 @@ public class Loader {
 		return x;
 	}
 	
-	// see if you can do in place!
+	/** Converts a world Y value to a tile y value
+	 * @param y world value
+	 * @return The tile rep of y
+	 */
 	public static float getTileY(float y) {
 		y -= offset_y;
 		y /= App.TILE_SIZE;
@@ -72,37 +96,21 @@ public class Loader {
 		return y;
 	}
 	
+	/** Whether the given position is in bounds of the game
+	 * @param tx - xpos
+	 * @param ty - ypos
+	 * @return true if the given position is in the game
+	 */
 	public static boolean inBounds(int tx, int ty) {
 		if (tx >= 0 && tx < world_width && ty >= 0 && ty < world_height) {
 			return true;
 		}
 		return false;
 	}
-	/*
-	 * don't need
-	// Converts a world coordinate to a tile coordinate,
-	// and returns if that location is a blocked tile
-	public static boolean isBlocked(float x, float y) {
-		x -= offset_x;
-		x /= App.TILE_SIZE;
-		y -= offset_y;
-		y /= App.TILE_SIZE;
-		
-		// Rounding is important here
-		x = Math.round(x);
-		y = Math.round(y);
-		// Do bounds checking!
-		if (x >= 0 && x < world_width && y >= 0 && y < world_height) {
-			return types[(int)x][(int)y].equals("wall");
-		}
-		// Default to blocked
-		return true;
-	}*/
-		
-	/**
-	 * Loads the sprites from a given file.
+	
+	/** Loads the sprites from a given file.
 	 * @param filename
-	 * @return
+	 * @return An array of Sprites as specified by the file
 	 */
 	public static ArrayList<Sprite> loadSprites(String filename) {
 		ArrayList<Sprite> list = new ArrayList<>();
@@ -121,7 +129,7 @@ public class Loader {
 			types = new String[world_width][world_height];
 			
 			// Calculate the top left of the tiles so that the level is
-			// centred
+			// centered
 			offset_x = (App.SCREEN_WIDTH - world_width * App.TILE_SIZE) / 2;
 			offset_y = (App.SCREEN_HEIGHT - world_height * App.TILE_SIZE) / 2;
 

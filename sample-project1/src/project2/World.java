@@ -1,10 +1,27 @@
-package project1;
+package project2;
 
 import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
+/** SWEN20003 Object Oriented Software Development 
+ * Project 2
+ * @author Christopher Chapman
+ * Student no: 767336
+ * Email: chapmanc1@student.unimelb.edu.au
+ * 
+ * Contains code from project1-sample
+ * @author Eleanor McMurtry 
+ * 
+ * Based off of Sample 2A UML
+ * @author Eleanor McMurtry 
+ * 
+ * 
+ * World class
+ */
+
 public class World {
+	/** arraylist containing all the sprites in the world*/
 	private static ArrayList<Sprite> sprites;
 	private static int curr_level;
 	public static Input input;
@@ -13,40 +30,65 @@ public class World {
 	public static int playerDir;
 	public static int rogueDir;
 	
+	
+	/** This class controls, renders, and updates all the sprites in the game.
+	 * 
+	 */
 	public World(int level) {
 		// loads in the current level from file
 		sprites = Loader.loadSprites("res/levels/" + Integer.toString(curr_level) + ".lvl");
-		playerMoved = false;
 		num_moves = 0;
+		initSwitch();		// if there is a switch, pair the switch and door @ runtime
 	}
 	
 	
-	public void createSprite(Sprite sprite) {
+	/** If there is a switch, links it to a door so that it can control it
+	 * Assumes that if there's a switch, there is also a door!
+	 */
+	public static void initSwitch() {
+		
+		if (World.getSpriteOfType(Tag.SWITCH) != null) {
+			((Switch)World.getSpriteOfType(Tag.SWITCH)).setDoor((Door)(World.getSpriteOfType(Tag.DOOR)));
+		}
 		
 	}
 	
+	/** sets a Sprite to null in the array! Never to be seen again */
 	public static void destroySprite(Sprite sprite) {
 		int index = sprites.indexOf(sprite);
-		sprites.set(index, null);
-		System.out.println("destroying sprite");
+		System.out.println("Destroying sprite");
+		sprites.set(index, new Explosion(sprite.getX(), sprite.getY()));
 	}
 	
-	public static boolean isBlocked(float x, float y) {
+	/** creates an explosion object. Used when destroying Sprites */
+	public static void createExplosion(int index, float x, float y) {
 		
+		sprites.set(index, new Explosion(x,y));
+	}
+
+	/**
+	 * @param x, the x locatiion to check
+	 * @param y, the y location to check
+	 * @return true if the given position (x,y) is either out of bounds, or blocked by an object with the tag Tag.BLOCKED 
+	 */
+	public static boolean isBlocked(float x, float y) {
 		// checks that the given pos is within the game bounds
 		if (!Loader.inBounds((int)Loader.getTileX(x),(int)Loader.getTileY(y))) {
 			return true;
 		}
 		
-		if (getSpriteOfType(Tag.BLOCKED, x, y) != null) {
-			// also check that it's not blocked by a sprite!
-			System.out.println("Is blocked");
+		if (hasSpriteAtPos(Tag.BLOCKED, x, y)) {
 			return true;
 		}
-		
 		return false;
 	}
 	
+
+/**
+ * @param pos the position to check
+ * @return checks if pos is blocked by an object w/ Tag.BLOCKED or out of bounds.
+ * This is useful when pos is more readily available than x and y coordinates 
+ */
 public static boolean isBlocked(Position pos) {
 		
 		// checks that the requested position is in bounds
@@ -55,29 +97,34 @@ public static boolean isBlocked(Position pos) {
 		}
 		
 		// checks whether the requested position is taken by an object with the blocked tag
-		if (getSpriteOfType(Tag.BLOCKED, pos.getX(), pos.getY()) != null) {
-			// also check that it's not blocked by a sprite!
-			System.out.println("Is blocked");
+		if (hasSpriteAtPos(Tag.BLOCKED, pos)) {
 			return true;
 		}
 		
 		return false;
 	}
 	
+/**
+ * Updates all movable objects history. Allows for undoing
+ */
 	public static void updateMovableHistory() {
-		for (Sprite sprite: sprites) {
-			if (sprite.compareTag("movable")) {
-				((Movable)sprite).addToHistory();
+		for (Sprite sprite : sprites) {
+			if (sprite != null) {
+				if (sprite.compareTag(Tag.MOVABLE)) {
+					((Movable)sprite).addToHistory();
+				}
 			}
 		}
 	}
-	
+	/** Undoes all movable sprites */
 	public static void undoMovables() {
 		for (Sprite sprite : sprites) {
+			
 			// undo all movable sprites!
-			if (sprite.compareTag(Tag.UNDOABLE)) {
-				((Movable)sprite).undo();
-				//System.out.println(sprite.getClass());
+			if (sprite != null) {
+				if (sprite.compareTag(Tag.UNDOABLE)) {
+					((Movable)sprite).undo();
+				}
 			}
 			
 		}
@@ -89,46 +136,55 @@ public static boolean isBlocked(Position pos) {
 		}
 	}
 	
-	// gets the first available sprite of type tag
+	/** gets the first available sprite of type tag */
 	public static Sprite getSpriteOfType(String tag) {
 		for (Sprite sprite : sprites) {
-			if (sprite.compareTag(tag)) {
-				return sprite;
+			if (sprite != null) {
+				if (sprite.compareTag(tag)) {
+					return sprite;
+				}
 			}
 		}
 		return null;
 	}
 	
+	/** Gets a sprite with the given tag at position (x,y) 
+	 * 
+	 * @param tag
+	 * @param x	x-pos of the sprite to be checked
+	 * @param y	y-pos of the sprite to be checked
+	 * @return	null if no sprite of the type at the given position.
+	 * Else, returns the sprite at that place
+	 */
 	public static Sprite getSpriteOfType(String tag, float x, float y) {
 		for (Sprite sprite : sprites) {
-			//System.out.println("Comparing:");
-			//System.out.format("x: %f %f\n", Loader.getTileX(x), Loader.getTileX(sprite.getX()));
-			//System.out.format("y: %f %f\n", Loader.getTileY(y), Loader.getTileY(sprite.getY()));
-			if (sprite.compareTag(tag) 	&& (Loader.getTileX(x) == Loader.getTileX(sprite.getX())) 
-										&& (Loader.getTileY(y) == Loader.getTileY(sprite.getY()))) {
-				return sprite;
+			if (sprite != null) {
+				if (sprite.compareTag(tag) 	&& (Loader.getTileX(x) == Loader.getTileX(sprite.getX())) 
+											&& (Loader.getTileY(y) == Loader.getTileY(sprite.getY()))) {
+					return sprite;
+				}
 			}
 		}
-		
 		// returns null if nothing there
 		return null;
 	}
 	
 	
-	// for when using a position is better
+	/** for when using a position is better	*/
 	public static Sprite getSpriteOfType(String tag, Position pos) {
 		for (Sprite sprite : sprites) {
-			
-			if (sprite.compareTag(tag) 	&& (Loader.getTileX(pos.getX()) == Loader.getTileX(sprite.getX())) 
-										&& (Loader.getTileY(pos.getY()) == Loader.getTileY(sprite.getY()))) {
-				return sprite;
+			if (sprite != null) {
+				if (sprite.compareTag(tag) 	&& (Loader.getTileX(pos.getX()) == Loader.getTileX(sprite.getX())) 
+											&& (Loader.getTileY(pos.getY()) == Loader.getTileY(sprite.getY()))) {
+					return sprite;
+				}
 			}
 		}
 		// returns null if nothing there
 		return null;
 	}
 	
-	// for when getting the sprite doesn't matter
+	/** for when getting the sprite doesn't matter, just used as a check */
 	public static boolean hasSpriteAtPos(String tag, float x, float y) {
 		if (getSpriteOfType(tag, x, y) != null) {
 			return true;
@@ -143,14 +199,16 @@ public static boolean isBlocked(Position pos) {
 		return false;
 	}
 	
+	/** updates the sprites once per frame*/
 	public void update(Input input, int delta) {
 		
+		// setting whether the player has moved to false once per round
+		playerMoved = false;
 		this.input = input;
 		
 		// For keyboard commands
 		// check if you've won!
 		if (hasWon()) {
-			System.out.println("You are a winner");
 			loadNextLevel();
 		}
 		
@@ -160,9 +218,10 @@ public static boolean isBlocked(Position pos) {
 		}
 		
 		// Go to next level. For testing!
-		if (input.isKeyPressed(Input.KEY_L)) {
+		
+		/*if (input.isKeyPressed(Input.KEY_L)) {
 			loadNextLevel();
-		}
+		}*/
 		
 		// If R, restart level
 		if (input.isKeyPressed(Input.KEY_R)) {
@@ -183,12 +242,9 @@ public static boolean isBlocked(Position pos) {
 			}
 		}
 		
-		//448,352 -> cracked pos
-		// next the enemies, as some have special interactions with other blocks
 		for (Sprite enemy : sprites) {
 			if (enemy != null && enemy.compareTag(Tag.ENEMY)) {
 				enemy.update(delta);
-				
 				
 				// checks if the player has hit an enemy
 				if (hasSpriteAtPos(Tag.PLAYER, enemy.getPos())) {
@@ -205,8 +261,13 @@ public static boolean isBlocked(Position pos) {
 				if (sprite.compareTag(Tag.PUSHABLE)) {
 					
 					// If the player or rogue is on top of the pushable block, push it!
-					if (hasSpriteAtPos(Tag.PLAYER, sprite.getX(), sprite.getY())) {
-						((Pushable)sprite).push(playerDir);
+					if (hasSpriteAtPos(Tag.PLAYER, sprite.getPos())) {
+						
+						if (sprite.compareTag(Tag.TNT)) {
+							((Tnt)sprite).push(playerDir);
+						} else {
+							((Pushable)sprite).push(playerDir);
+						}
 					}
 					
 					if (hasSpriteAtPos(Tag.ROGUE, sprite.getX(), sprite.getY())) {
@@ -214,51 +275,48 @@ public static boolean isBlocked(Position pos) {
 					}
 					
 					if (sprite.compareTag(Tag.TNT)) {
-						// if the tnt hit's a cracked wall... 
 						
-						if (getSpriteOfType(Tag.CRACKED, sprite.getX(), sprite.getY()) != null) {
-							System.out.println("hey guys");
-							//destroySprite(sprite);
+						// if shares the same spot as a cracked wall
+						// EXPLODES
+						if ((getSpriteOfType(Tag.CRACKED, sprite.getX(), sprite.getY())) != null) {
+							destroySprite(sprite);
+							destroySprite(getSpriteOfType(Tag.CRACKED, sprite.getX(), sprite.getY()));
 						}
 					}
 					
 					if (sprite.compareTag(Tag.ICE))  {
 						((Ice)sprite).update(delta);
 					}
-				} else if (!sprite.compareTag(Tag.ENEMY)){
+				} else if (!sprite.compareTag(Tag.ENEMY) && (!sprite.compareTag(Tag.PLAYER))){
 					sprite.update(delta);
+					
 				}
 				
-			}
-			
-			for (Sprite test : sprites) {
-				if (test.compareTag(Tag.TNT)) {
-					if (hasSpriteAtPos(Tag.CRACKED, test.getPos())) {
-						Sprite cracked = getSpriteOfType(Tag.CRACKED, test.getX(), test.getY());
-						System.out.println(cracked.getX());
-					}
-				}
 			}
 		}
 	}
 	
+	
 	public void render(Graphics g) {
 		for (Sprite sprite : sprites) {
 			if (sprite != null) {
-				if (sprite.compareTag("tnt")) {
-					
+				
+				// don't render if explosion is not active
+				if (sprite.compareTag(Tag.EXPLOSION) && !((Explosion)sprite).isActive()) {
+				} else {
+					sprite.render(g);
 				}
-				sprite.render(g);
+				
 			}
 		}
 		
-		// drawing the number of moves
-		g.drawString("Moves: " + num_moves, 0, 0);
-		if (playerMoved) {
-			num_moves++;
-			playerMoved = false;
+		// drawing the number of moves in the top left
+		if (World.curr_level != Constant.MAX_LVL) {
+			g.drawString("Moves: " + num_moves, 0, 0);
+			if (playerMoved) {
+				num_moves++;
+			}
 		}
-		
 		
 	}
 	
@@ -268,19 +326,20 @@ public static boolean isBlocked(Position pos) {
 	
 	public boolean hasWon() {
 		for (Sprite sprite: sprites) {
-			if (sprite.compareTag("target") && !((Target)sprite).activated()) {
-				return false;
+			if (sprite != null) {
+				if (sprite.compareTag("target") && !((Target)sprite).activated()) {
+					return false;
+				}
 			}
 		}
 		return true;
 		
 	}
 	
+	/** Loads the next level*/
 	public void loadNextLevel() {
-		System.out.println("Loading level: " + curr_level);
+		
 		if (curr_level >= Constant.MAX_LVL) {
-			// do something
-			// maybe timer for 5 seconds then leave?
 		} else {
 			curr_level++;
 			new World(curr_level);

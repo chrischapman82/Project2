@@ -1,13 +1,24 @@
-package project1;
+package project2;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
 
+/** SWEN20003 Object Oriented Software Development 
+ * Project 2
+ * @author Christopher Chapman
+ * Student no: 767336
+ * Email: chapmanc1@student.unimelb.edu.au
+ * 
+ * Contains code from project1-sample
+ * @author Eleanor McMurtry 
+ * 
+ * Based off of Sample 2A UML
+ * @author Eleanor McMurtry 
+ */
 public class Sprite {
 	// Used to decide what direction an object is moving
 	// Look up enums to find a more elegant solution!
@@ -35,47 +46,74 @@ public class Sprite {
 		snapToGrid();
 	}
 	
+	/**	gets the current position of the sprite
+	 * @return
+	 */
 	public Position getPos() {
 		Position pos = new Position(x,y);
 		return pos;
 	}
 	
+	/**	Sets the sprites current position
+	 * @param pos
+	 */
 	public void setPos(Position pos) {
 		x = pos.getX();
 		y = pos.getY();
 		snapToGrid();
 	}
 	
-	// dunno if I want these!
+	/**	Gets the X value
+	 * @return
+	 */
 	public float getX() {
 		return x;
 	}
 
+	/**	Sets the X value and aligns it to grid as floats can be slightly change over time.
+	 * @param x
+	 */
 	public void setX(float x) {
 		this.x = x;
 		snapToGrid();
 	}
 
+	/**	Gets the Y value
+	 * @return
+	 */
 	public float getY() {
 		return y;
 	}
 
+	/**	Sets the Y value and aligns it to grid as floats can be slightly change over time.
+	 * @param y
+	 */
 	public void setY(float y) {
 		this.y = y;
 		snapToGrid();
 	}
 
+	/**	Adds a tag describing an attribute from the current sprite to the tag list
+	 * @param tag	added to tag list
+	 */
 	public void addTag(String tag) {
 		// adds the string to the tag list
 		this.tags.add(tag);
 	}
 	
+	/**	Removes a tag from the sprite list, using ArrayList's remove to check if 
+	 * it's possible ot get rid of the tag.
+	 * @param tag
+	 */
 	public void removeTag(String tag) {
 		// remove auto checks if it's possible to get rid of the tag
 		this.tags.remove(tag);
 	}
 	
-	// if the string is in current tags
+	/**	Checks if a tag is in this sprites tag list
+	 * @param compare
+	 * @return
+	 */
 	public boolean compareTag(String compare) {
 		if (this.tags.contains(compare)) {
 			return true;
@@ -83,47 +121,58 @@ public class Sprite {
 		return false;
 	}
 	
+	/**	udpates the current sprite once per frame. Generally overwritten.
+	 * @param delta
+	 */
 	public void update(int delta) {
 		
 	}
 	
-	// in here for privacy reasons!
-	// Try to get this working later. Used for all movement like pushing and moveDir!
-	// Returns the position from a sprite in a given direction, the size of the tile
-	// and the number of tiles in that direction
-	public Position getDest(int dir, float tile_size, int num_tiles) {
+	/**	Gets the position num_steps away in the given direction
+	 * @param dir		The direction that the destination is.
+	 * @param step_size	The size of each tile.
+	 * @param num_steps	The number of steps in the given direction
+	 * @return	the position of the destination num_steps away in the direction dir.
+	 */
+	public Position getDest(int dir, float step_size, int num_steps) {
 		float delta_x = 0,
 				delta_y = 0;
 		switch (dir) {
 			case DIR_LEFT:
-				delta_x = -tile_size;
+				delta_x = -step_size;
 				break;
 			case DIR_RIGHT:
-				delta_x = tile_size;
+				delta_x = step_size;
 				break;
 			case DIR_UP:
-				delta_y = -tile_size;
+				delta_y = -step_size;
 				break;
 			case DIR_DOWN:
-				delta_y = tile_size;
+				delta_y = step_size;
 				break;
 		}
 		
-		Position pos = new Position(this.x + num_tiles*delta_x, this.y + num_tiles*delta_y);
+		Position pos = new Position(this.x + num_steps*delta_x, this.y + num_steps*delta_y);
 		return pos;
 	}
 	
-	// when using the standard speed
+	/**	Same as other, but using the standard speed based off of tile size given in app
+	 */
 	public Position getDest(int dir, int num_tiles) {
 		float tile_size = App.TILE_SIZE;
 		return getDest(dir, tile_size, num_tiles);
 	}
 	
+	/** Prints the current state of the world to the screen.
+	 * Only shows the door whenever it is closed!
+	 * @param g
+	 */
 	public void render(Graphics g) {
 		image.drawCentered(x, y);
 	}
 	
-	// Forces this sprite to align to the grid
+	/**Forces this sprite to align to the grid
+	 */
 	public void snapToGrid() {
 		x /= App.TILE_SIZE;
 		y /= App.TILE_SIZE;
@@ -131,7 +180,5 @@ public class Sprite {
 		y = Math.round(y);
 		x *= App.TILE_SIZE;
 		y *= App.TILE_SIZE;
-	}
-	//public void moveToDest(int dir) {
-	//}
+	}	
 }

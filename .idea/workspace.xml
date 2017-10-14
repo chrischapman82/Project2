@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0e260d8e-f8a4-4675-9437-dbd764309a83" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/sample-project1/bin/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="707" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sample-project1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sample-project1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sample-project1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project2" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e7a9bfb2-9e30-4996-9e2c-e6ae4dc55168" name="Default" comment="" />
+      <created>1507887171733</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1507887171733</updated>
+      <workItem from="1507887192960" duration="499000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1913000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="10" y="43" width="1260" height="669" extended-state="0" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="uml://JavaScript-modules-diagram//Users/chris/git/Project2/sample-project1/src/project2">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/sample-project1/src/project2</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="255.0" y="320.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/project2">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>project2</OriginalElement>
+          <nodes>
+            <node x="909.5000000000001" y="994.0">project2.Mage</node>
+            <node x="253.0" y="2060.0">project2.map</node>
+            <node x="265.0000000000001" y="1294.5">project2.Stone</node>
+            <node x="1557.5" y="705.0">project2.Door</node>
+            <node x="369.0000000000001" y="1250.0">project2.Tnt</node>
+            <node x="1169.5" y="1005.0">project2.Rogue</node>
+            <node x="2105.5" y="738.5">project2.Target</node>
+            <node x="223.5000000000001" y="1027.5">project2.Pushable</node>
+            <node x="1572.0" y="1457.0">project2.Position</node>
+            <node x="0.0" y="1206.0">project2.Ice</node>
+            <node x="1125.5" y="749.5">project2.Wall</node>
+            <node x="410.5000000000001" y="972.0">project2.Player</node>
+            <node x="1780.5" y="716.0">project2.Switch</node>
+            <node x="644.5000000000001" y="1005.0">project2.Skeleton</node>
+            <node x="875.0" y="1457.0">project2.Loader</node>
+            <node x="1219.5" y="749.5">project2.Floor</node>
+            <node x="380.0" y="1457.0">project2.Tag</node>
+            <node x="1300.0" y="0.0">project2.Sprite</node>
+            <node x="1987.5" y="749.5">project2.Cracked</node>
+            <node x="0.0" y="2060.0">project2.Timer</node>
+            <node x="1221.0" y="1457.0">project2.App</node>
+            <node x="1318.5" y="694.0">project2.Explosion</node>
+            <node x="639.5000000000001" y="606.0">project2.Movable</node>
+            <node x="607.0" y="1457.0">project2.Constant</node>
+            <node x="0.0" y="1457.0">project2.World</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="project2.Mage" target="project2.Movable">
+              <point x="0.0" y="-70.0" />
+              <point x="1029.5" y="952.0" />
+              <point x="818.0000000000001" y="952.0" />
+              <point x="51.0" y="158.0" />
+            </edge>
+            <edge source="project2.Cracked" target="project2.Sprite">
+              <point x="0.0" y="-14.5" />
+              <point x="2036.5" y="566.0" />
+              <point x="1513.3333333333335" y="566.0" />
+              <point x="85.33333333333348" y="268.0" />
+            </edge>
+            <edge source="project2.Explosion" target="project2.Sprite">
+              <point x="0.0" y="-70.0" />
+              <point x="0.0" y="268.0" />
+            </edge>
+            <edge source="project2.Door" target="project2.Sprite">
+              <point x="0.0" y="-59.0" />
+              <point x="1659.0" y="586.0" />
+              <point x="1456.4444444444443" y="586.0" />
+              <point x="28.444444444444343" y="268.0" />
+            </edge>
+            <edge source="project2.Rogue" target="project2.Movable">
+              <point x="0.0" y="-59.0" />
+              <point x="1253.0" y="942.0" />
+              <point x="869.0000000000001" y="942.0" />
+              <point x="102.0" y="158.0" />
+            </edge>
+            <edge source="project2.Ice" target="project2.Pushable">
+              <point x="0.0" y="-103.0" />
+              <point x="122.5" y="1181.0" />
+              <point x="251.33333333333348" y="1181.0" />
+              <point x="-55.66666666666666" y="36.5" />
+            </edge>
+            <edge source="project2.Player" target="project2.Movable">
+              <point x="0.0" y="-92.0" />
+              <point x="517.5000000000001" y="952.0" />
+              <point x="716.0000000000001" y="952.0" />
+              <point x="-51.0" y="158.0" />
+            </edge>
+            <edge source="project2.Skeleton" target="project2.Movable">
+              <point x="0.0" y="-59.0" />
+              <point x="0.0" y="158.0" />
+            </edge>
+            <edge source="project2.Tnt" target="project2.Pushable">
+              <point x="0.0" y="-59.0" />
+              <point x="458.5000000000001" y="1181.0" />
+              <point x="362.66666666666674" y="1181.0" />
+              <point x="55.66666666666663" y="36.5" />
+            </edge>
+            <edge source="project2.Stone" target="project2.Pushable">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="36.5" />
+            </edge>
+            <edge source="project2.Pushable" target="project2.Movable">
+              <point x="0.0" y="-36.5" />
+              <point x="307.0000000000001" y="942.0" />
+              <point x="665.0000000000001" y="942.0" />
+              <point x="-102.0" y="158.0" />
+            </edge>
+            <edge source="project2.Movable" target="project2.Sprite">
+              <point x="0.0" y="-158.0" />
+              <point x="767.0000000000001" y="556.0" />
+              <point x="1314.2222222222222" y="556.0" />
+              <point x="-113.77777777777783" y="268.0" />
+            </edge>
+            <edge source="project2.Wall" target="project2.Sprite">
+              <point x="0.0" y="-14.5" />
+              <point x="1162.5" y="576.0" />
+              <point x="1371.1111111111113" y="576.0" />
+              <point x="-56.888888888888914" y="268.0" />
+            </edge>
+            <edge source="project2.Target" target="project2.Sprite">
+              <point x="0.0" y="-25.5" />
+              <point x="2199.0" y="556.0" />
+              <point x="1541.7777777777778" y="556.0" />
+              <point x="113.77777777777783" y="268.0" />
+            </edge>
+            <edge source="project2.Switch" target="project2.Sprite">
+              <point x="0.0" y="-48.0" />
+              <point x="1874.0" y="576.0" />
+              <point x="1484.8888888888891" y="576.0" />
+              <point x="56.888888888888914" y="268.0" />
+            </edge>
+            <edge source="project2.Floor" target="project2.Sprite">
+              <point x="0.0" y="-14.5" />
+              <point x="1259.0" y="586.0" />
+              <point x="1399.5555555555557" y="586.0" />
+              <point x="-28.444444444444343" y="268.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.4636019409615228" x="778.19331705131" y="1550.7887384052528" />
+          <SelectedNodes>
+            <node>project2.Mage</node>
+            <node>project2.map</node>
+            <node>project2.Stone</node>
+            <node>project2.Door</node>
+            <node>project2.Tnt</node>
+            <node>project2.Rogue</node>
+            <node>project2.Target</node>
+            <node>project2.Pushable</node>
+            <node>project2.Position</node>
+            <node>project2.Ice</node>
+            <node>project2.Wall</node>
+            <node>project2.Player</node>
+            <node>project2.Switch</node>
+            <node>project2.Skeleton</node>
+            <node>project2.Loader</node>
+            <node>project2.Floor</node>
+            <node>project2.Tag</node>
+            <node>project2.Sprite</node>
+            <node>project2.Cracked</node>
+            <node>project2.Timer</node>
+            <node>project2.App</node>
+            <node>project2.Explosion</node>
+            <node>project2.Movable</node>
+            <node>project2.Constant</node>
+            <node>project2.World</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Methods</Category>
+            <Category>Fields</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-project1/src/project2/Floor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-project1/src/project2/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-project1/src/project2/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-project1/src/project2/Cracked.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-project1/src/project2/Explosion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-project1/src/project2/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="19" column="34" lean-forward="false" selection-start-line="18" selection-start-column="1" selection-end-line="19" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram//Users/chris/git/Project2/sample-project1/src/project2">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/sample-project1/src/project2</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="255.0" y="320.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/project2">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>project2</OriginalElement>
+          <nodes>
+            <node x="909.5000000000001" y="994.0">project2.Mage</node>
+            <node x="253.0" y="2060.0">project2.map</node>
+            <node x="265.0000000000001" y="1294.5">project2.Stone</node>
+            <node x="1557.5" y="705.0">project2.Door</node>
+            <node x="369.0000000000001" y="1250.0">project2.Tnt</node>
+            <node x="1169.5" y="1005.0">project2.Rogue</node>
+            <node x="2105.5" y="738.5">project2.Target</node>
+            <node x="223.5000000000001" y="1027.5">project2.Pushable</node>
+            <node x="1572.0" y="1457.0">project2.Position</node>
+            <node x="0.0" y="1206.0">project2.Ice</node>
+            <node x="1125.5" y="749.5">project2.Wall</node>
+            <node x="410.5000000000001" y="972.0">project2.Player</node>
+            <node x="1780.5" y="716.0">project2.Switch</node>
+            <node x="644.5000000000001" y="1005.0">project2.Skeleton</node>
+            <node x="875.0" y="1457.0">project2.Loader</node>
+            <node x="1219.5" y="749.5">project2.Floor</node>
+            <node x="380.0" y="1457.0">project2.Tag</node>
+            <node x="1300.0" y="0.0">project2.Sprite</node>
+            <node x="1987.5" y="749.5">project2.Cracked</node>
+            <node x="0.0" y="2060.0">project2.Timer</node>
+            <node x="1221.0" y="1457.0">project2.App</node>
+            <node x="1318.5" y="694.0">project2.Explosion</node>
+            <node x="639.5000000000001" y="606.0">project2.Movable</node>
+            <node x="607.0" y="1457.0">project2.Constant</node>
+            <node x="0.0" y="1457.0">project2.World</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="project2.Mage" target="project2.Movable">
+              <point x="0.0" y="-70.0" />
+              <point x="1029.5" y="952.0" />
+              <point x="818.0000000000001" y="952.0" />
+              <point x="51.0" y="158.0" />
+            </edge>
+            <edge source="project2.Cracked" target="project2.Sprite">
+              <point x="0.0" y="-14.5" />
+              <point x="2036.5" y="566.0" />
+              <point x="1513.3333333333335" y="566.0" />
+              <point x="85.33333333333348" y="268.0" />
+            </edge>
+            <edge source="project2.Explosion" target="project2.Sprite">
+              <point x="0.0" y="-70.0" />
+              <point x="0.0" y="268.0" />
+            </edge>
+            <edge source="project2.Door" target="project2.Sprite">
+              <point x="0.0" y="-59.0" />
+              <point x="1659.0" y="586.0" />
+              <point x="1456.4444444444443" y="586.0" />
+              <point x="28.444444444444343" y="268.0" />
+            </edge>
+            <edge source="project2.Rogue" target="project2.Movable">
+              <point x="0.0" y="-59.0" />
+              <point x="1253.0" y="942.0" />
+              <point x="869.0000000000001" y="942.0" />
+              <point x="102.0" y="158.0" />
+            </edge>
+            <edge source="project2.Ice" target="project2.Pushable">
+              <point x="0.0" y="-103.0" />
+              <point x="122.5" y="1181.0" />
+              <point x="251.33333333333348" y="1181.0" />
+              <point x="-55.66666666666666" y="36.5" />
+            </edge>
+            <edge source="project2.Player" target="project2.Movable">
+              <point x="0.0" y="-92.0" />
+              <point x="517.5000000000001" y="952.0" />
+              <point x="716.0000000000001" y="952.0" />
+              <point x="-51.0" y="158.0" />
+            </edge>
+            <edge source="project2.Skeleton" target="project2.Movable">
+              <point x="0.0" y="-59.0" />
+              <point x="0.0" y="158.0" />
+            </edge>
+            <edge source="project2.Tnt" target="project2.Pushable">
+              <point x="0.0" y="-59.0" />
+              <point x="458.5000000000001" y="1181.0" />
+              <point x="362.66666666666674" y="1181.0" />
+              <point x="55.66666666666663" y="36.5" />
+            </edge>
+            <edge source="project2.Stone" target="project2.Pushable">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="36.5" />
+            </edge>
+            <edge source="project2.Pushable" target="project2.Movable">
+              <point x="0.0" y="-36.5" />
+              <point x="307.0000000000001" y="942.0" />
+              <point x="665.0000000000001" y="942.0" />
+              <point x="-102.0" y="158.0" />
+            </edge>
+            <edge source="project2.Movable" target="project2.Sprite">
+              <point x="0.0" y="-158.0" />
+              <point x="767.0000000000001" y="556.0" />
+              <point x="1314.2222222222222" y="556.0" />
+              <point x="-113.77777777777783" y="268.0" />
+            </edge>
+            <edge source="project2.Wall" target="project2.Sprite">
+              <point x="0.0" y="-14.5" />
+              <point x="1162.5" y="576.0" />
+              <point x="1371.1111111111113" y="576.0" />
+              <point x="-56.888888888888914" y="268.0" />
+            </edge>
+            <edge source="project2.Target" target="project2.Sprite">
+              <point x="0.0" y="-25.5" />
+              <point x="2199.0" y="556.0" />
+              <point x="1541.7777777777778" y="556.0" />
+              <point x="113.77777777777783" y="268.0" />
+            </edge>
+            <edge source="project2.Switch" target="project2.Sprite">
+              <point x="0.0" y="-48.0" />
+              <point x="1874.0" y="576.0" />
+              <point x="1484.8888888888891" y="576.0" />
+              <point x="56.888888888888914" y="268.0" />
+            </edge>
+            <edge source="project2.Floor" target="project2.Sprite">
+              <point x="0.0" y="-14.5" />
+              <point x="1259.0" y="586.0" />
+              <point x="1399.5555555555557" y="586.0" />
+              <point x="-28.444444444444343" y="268.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.4636019409615228" x="778.19331705131" y="1550.7887384052528" />
+          <SelectedNodes>
+            <node>project2.Mage</node>
+            <node>project2.map</node>
+            <node>project2.Stone</node>
+            <node>project2.Door</node>
+            <node>project2.Tnt</node>
+            <node>project2.Rogue</node>
+            <node>project2.Target</node>
+            <node>project2.Pushable</node>
+            <node>project2.Position</node>
+            <node>project2.Ice</node>
+            <node>project2.Wall</node>
+            <node>project2.Player</node>
+            <node>project2.Switch</node>
+            <node>project2.Skeleton</node>
+            <node>project2.Loader</node>
+            <node>project2.Floor</node>
+            <node>project2.Tag</node>
+            <node>project2.Sprite</node>
+            <node>project2.Cracked</node>
+            <node>project2.Timer</node>
+            <node>project2.App</node>
+            <node>project2.Explosion</node>
+            <node>project2.Movable</node>
+            <node>project2.Constant</node>
+            <node>project2.World</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Methods</Category>
+            <Category>Fields</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

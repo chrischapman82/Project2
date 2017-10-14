@@ -1,10 +1,22 @@
-package project1;
+package project2;
 
 import org.newdawn.slick.Input;
 
+/** SWEN20003 Object Oriented Software Development 
+ * Project 2
+ * @author Christopher Chapman
+ * Student no: 767336
+ * Email: chapmanc1@student.unimelb.edu.au
+ * 
+ * Used code from project1-sample
+ * @author Eleanor McMurtry
+ * 
+ * Based off of Sample 2A UML
+ * @author Eleanor McMurtry 
+ */
+
 public class Player extends Movable {
 	
-	private int moveCount;
 	private int dir;
 	
 	public Player(float x, float y) {
@@ -12,35 +24,28 @@ public class Player extends Movable {
 		this.addTag(Tag.PLAYER);
 		this.addTag(Tag.CAN_PUSH);
 		this.addTag(Tag.UNDOABLE);
-		moveCount = 0;
 		dir = DIR_NONE;
 	}
 
-	/* Get the move!
-	 *  
+
+	/** gets the direction that the sprite's going
+	 * @return
 	 */
-	public int getMoveCount() {
-		return moveCount;
-	}
-
-	/* 
-	 * https://stackoverflow.com/questions/1028967/simple-getter-setter-comments
-	 */
-	public void setMoveCount(int moveCount) {
-		this.moveCount = moveCount;
-	}
-
-
 	public int getDir() {
 		return dir;
 	}
 
 
+	/**	sets the direction that the sprite's going 
+	 * @param dir	
+	 */
 	public void setDir(int dir) {
 		this.dir = dir;
 	}
 
 
+	/** Uses keyboard input from World to move the player
+	 */
 	@Override
 	public void update(int delta) {
 		Input input = World.input;
@@ -60,15 +65,11 @@ public class Player extends Movable {
 		}
 		World.playerDir = dir;
 
-		// bad privacy
 		if (dir != DIR_NONE) {
 			World.playerMoved = true;
 			World.updateMovableHistory();
 			moveDir(dir);
 		}
-		// otherwise do nothing
-		// Move to our destination
-		//moveDir(dir);
 	}
 	
 }

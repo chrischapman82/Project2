@@ -1,19 +1,18 @@
-package project1;
+package project2;
 
+/** SWEN20003 Object Oriented Software Development 
+ * Project 2
+ * @author Christopher Chapman
+ * Student no: 767336
+ * Email: chapmanc1@student.unimelb.edu.au
+ */
 public class Tnt extends Pushable {
 	
-	
+	private boolean active;
 	public Tnt(float x, float y) {
 		super(Constant.TNT_PATH, x, y);
 		this.addTag(Tag.TNT);
-	}
-	
-	public void onMove(int dir, float testX, float testY) {
-		
-		if (World.getSpriteOfType(Tag.CRACKED, testX, testY) != null) {
-			this.moveDir(dir);
-			World.destroySprite(this);
-		}
+		active = true;
 	}
 	
 	// overides so that it can be pushed into a cracked wall
@@ -24,16 +23,22 @@ public class Tnt extends Pushable {
 		
 		// If any blockage, don't move there!
 		Position candidate_pos = this.getDest(dir, 1);
-		System.out.println("candidate pos:" + candidate_pos.getX());
-		System.out.println(candidate_pos.getY());
-		if (World.getSpriteOfType(Tag.CRACKED, candidate_pos) != null) {
-			System.out.println("Moving to cracked wall");
+		
+		
+		if (World.hasSpriteAtPos(Tag.CRACKED, candidate_pos)) {
 			this.setPos(candidate_pos);
 		}
 		if (!World.isBlocked(candidate_pos)) {
-			//this.setX(candidatePos.getX());
-			//this.setY(candidatePos.getY());
 			this.setPos(candidate_pos);
 		}
+	}
+	
+	public void explode() {
+		active = false;
+	}
+	
+	
+	public boolean isActive() {
+		return active;
 	}
 }
